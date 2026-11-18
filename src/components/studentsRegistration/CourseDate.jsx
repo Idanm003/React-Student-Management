@@ -1,8 +1,8 @@
 import { dateFormatting } from "../../utils/utils";
 import "./CourseDate.css";
 
-function CourseDate(props) {
-  const formattedDate = dateFormatting(props.date);
+function CourseDate({date}) {
+  const formattedDate = dateFormatting(date);
 
   return (
     <div className="registration-date">

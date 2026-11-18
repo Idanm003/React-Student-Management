@@ -1,14 +1,14 @@
 import CourseDate from "./CourseDate";
 import "./RegisteredStudent.css";
 
-function RegisteredStudent(props) {
+function RegisteredStudent({ course, registeredStudent }) {
   return (
     <div className="registration-student card">
-      <CourseDate date={props.course.startDate} />
+      <CourseDate date={course.startDate} />
       <div className="registration-student__description">
-        <h2>{props.registeredStudent.studentName}</h2>
+        <h2>{registeredStudent.studentName}</h2>
         <div className="registration-student__course">
-          {props.course.displayName}
+          {course.displayName}
         </div>
       </div>
     </div>
