@@ -1,13 +1,13 @@
 import React from "react";
 import Chart from "../chart/Chart";
 
-function RegisteredStudentChart(props) {
+function RegisteredStudentChart({registeredStudents, courses}) {
   const chartCourseDataPoints = [];
 
-  for (const course in props.courses) {
+  for (const course in courses) {
     const courseToPush = {
-      ...props.courses[course],
-      displayName: props.courses[course].displayName.replace(" Course", ""),
+      ...courses[course],
+      displayName: courses[course].displayName.replace(" Course", ""),
       value: 0,
     };
 
@@ -15,9 +15,9 @@ function RegisteredStudentChart(props) {
   }
 
   for (const chartCourseDataPoint of chartCourseDataPoints) {
-    const courseRegisteredStudents = props.registeredStudents.filter(
+    const courseRegisteredStudents = registeredStudents.filter(
       (student) => {
-        return student.course === chartCourseDataPoint.name;
+        return student.courseId === chartCourseDataPoint.id;
       },
     );
 

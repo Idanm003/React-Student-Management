@@ -4,33 +4,37 @@ import RegisteredStudentList from "./RegisteredStudentList";
 import "./Registrations.css";
 import RegisteredStudentChart from "./RegisteredStudentChart";
 
-function Registrations(props) {
-  const [filteredCourse, setFilteredCourse] = useState("fullstack");
+function Registrations({ registeredStudents, courses }) {
+  const [filteredCourseId, setFilteredCourseId] = useState(null);
 
-  const filterChnageHandler = (selectedCourse) => {
-    setFilteredCourse(selectedCourse);
+  const filteredCourse =
+    courses.find((course) => course.id === filteredCourseId) ?? courses[0];
+
+  const filterChangeHandler = (selectedCourseId) => {
+    setFilteredCourseId(Number(selectedCourseId));
   };
 
-  const filteredRegisteredStudent = props.registeredStudents.filter(
-    (student) => {
-      return student.course === filteredCourse;
-    },
-  );
+  const filteredRegisteredStudent = filteredCourse
+    ? registeredStudents.filter(
+        (student) => student.courseId === filteredCourse.id,
+      )
+    : [];
 
   return (
     <div className="registrations card">
       <RegisteredStudentChart
-        registeredStudents={props.registeredStudents}
-        courses={props.courses}
+        registeredStudents={registeredStudents}
+        courses={courses}
       />
 
       <RegisteredStudentFilter
-        selected={filteredCourse}
-        onFilterChnageHandler={filterChnageHandler}
+        selected={filteredCourse ? filteredCourse.id : ""}
+        onFilterChangeHandler={filterChangeHandler}
+        courses={courses}
       />
       <RegisteredStudentList
         registeredStudents={filteredRegisteredStudent}
-        course={props.courses[filteredCourse]}
+        course={filteredCourse}
       />
     </div>
   );
