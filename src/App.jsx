@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { createStudent, getAllCourses, getAllStudents } from "./services/api";
-import { normalizeCourseName, normalizeCourseDate } from "./utils/utils";
-import { normalizeStudentFullName } from "./utils/utils";
 import NewStudent from "./components/newStudent/NewStudent";
 import Registrations from "./components/studentsRegistration/Registrations";
+import { createStudent, getAllCourses, getAllStudents } from "./services/api";
+import {
+  normalizeCourseName,
+  normalizeCourseDate,
+  normalizeStudentFullName,
+} from "./utils/utils";
 
 function App() {
   const [registeredStudents, setRegisteredStudents] = useState([]);
